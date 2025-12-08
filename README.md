@@ -1,97 +1,141 @@
-<!-- save as index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alok The Virus — Portfolio</title>
+  <meta charset="UTF-8">
+  <title>AloK The Virus — Community Moderator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8;
-      --maxw:1000px; --gap:18px;
+    body {
+      margin: 0;
+      background: #020617;
+      color: white;
+      font-family: Arial, sans-serif;
     }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, Arial;}
-    body{background:linear-gradient(180deg,#071024 0%, var(--bg) 100%); color:#e6eef6; padding:28px; display:flex; justify-content:center;}
-    .wrap{width:100%;max-width:var(--maxw);}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;}
-    .brand{font-weight:700;font-size:20px;color:var(--accent);}
-    nav a{color:var(--muted);margin-left:14px;text-decoration:none;font-size:14px}
-    .hero{display:grid;grid-template-columns:1fr 320px;gap:var(--gap);align-items:center;margin-bottom:28px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:18px; border-radius:12px; box-shadow: 0 6px 20px rgba(2,6,23,0.6);}
-    .intro h1{font-size:28px;margin-bottom:8px}
-    .intro p{color:var(--muted);line-height:1.5}
-    .contact a{display:inline-block;margin-top:12px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:var(--accent);font-weight:600}
-    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--gap)}
-    .proj{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));}
-    .proj h3{margin-bottom:6px;font-size:16px}
-    .proj p{color:var(--muted);font-size:14px}
-    footer{color:var(--muted);text-align:center;margin-top:28px;font-size:13px}
-    @media (max-width:880px){ .hero{grid-template-columns:1fr; } .brand{font-size:18px} }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .content {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #22d3ee;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #38bdf8;
+    }
+
+    p {
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">Alok The Virus</div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
 
-    <section class="hero">
-      <div class="card intro">
-        <h1>Hi,  Alok The Virus I am a Community Moderator.</h1>
-        <p>Short sentence about what you do (e.g., "UI designer & frontend dev. I make interfaces that are fast and easy to use.").</p>
-        <div class="contact">
-          <a href="mailto:youremail@example.com">Email me</a>
-        </div>
-      </div>
+  <!-- ✅ Background Animation -->
+  <canvas id="canvas-club"></canvas>
 
-      <aside class="card">
-        <h3>Skills</h3>
-        <p style="color:var(--muted)">HTML · CSS · JavaScript · React · Figma</p>
-        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
-        <h3>Links</h3>
-        <p style="color:var(--muted)">GitHub / Twitter / Dribbble (add links)</p>
-      </aside>
-    </section>
+  <div class="content">
 
-    <section id="projects">
-      <h2 style="margin-bottom:12px">Projects</h2>
-      <div class="projects">
-        <article class="proj card">
-          <h3>Project One</h3>
-          <p>Short description — what you built, tech used, link to live or repo.</p>
-        </article>
-        <article class="proj card">
-          <h3>Project Two</h3>
-          <p>Short description — screenshot, outcome, your role.</p>
-        </article>
-        <!-- copy more projects -->
-      </div>
-    </section>
+    <!-- ✅ HERO -->
+    <h1>AloK The Virus</h1>
+    <p>Community Moderator | Community Manager</p>
 
-    <section id="about" style="margin-top:22px">
-      <div class="card">
-        <h2>About</h2>
-        <p style="color:var(--muted);margin-top:10px">Write 2–4 sentences: education, strengths, what you enjoy building, and how you help others.</p>
-      </div>
-    </section>
+    <div class="card">
+      <p>
+        I am a dedicated community moderator with over 2 years of experience handling and managing online communities.
+        I specialize in Discord and Telegram community management, user support, and security moderation.
+      </p>
+    </div>
 
-    <section id="contact" style="margin-top:18px">
-      <div class="card">
-        <h2>Contact</h2>
-        <p style="color:var(--muted);margin-top:10px">Email: youremail@example.com<br>Telegram: @yourhandle<br>Or add a contact form later.</p>
-      </div>
-    </section>
+    <!-- ✅ EXPERIENCE -->
+    <h2>Work Experience</h2>
+
+    <div class="card">
+      <h3>Teneo Protocol</h3>
+      <p>
+        I have been actively working with the Teneo Protocol community for a long time, where my responsibilities include:
+        helping new users, solving their issues, guiding them with platform usage, and protecting the community by detecting
+        and banning scammers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Warden Protocol</h3>
+      <p>
+        I also worked with the Warden Protocol community as a moderator, where I managed Telegram and Discord groups,
+        assisted users with onboarding, answered technical questions, and maintained a scam-free environment.
+      </p>
+    </div>
+
+    <!-- ✅ RESPONSIBILITIES -->
+    <h2>What I Do</h2>
+
+    <div class="card">
+      <ul>
+        <li>✅ Discord Community Handling</li>
+        <li>✅ Telegram Group Management</li>
+        <li>✅ Helping Users & Solving Problems</li>
+        <li>✅ Scammer Detection & Permanent Ban</li>
+        <li>✅ Community Rules Enforcement</li>
+        <li>✅ New User Onboarding Support</li>
+      </ul>
+    </div>
+
+    <!-- ✅ SKILLS -->
+    <h2>Skills</h2>
+
+    <div class="card">
+      <p>
+        Community Management, Moderation, Conflict Handling, User Support,
+        Scammer Detection, Crypto Community Handling, Communication, Leadership
+      </p>
+    </div>
+
+    <!-- ✅ CONTACT -->
+    <h2>Contact</h2>
+
+    <div class="card">
+      <p>
+        GitHub: abrahampolok <br>
+        (You can add Telegram, Twitter, Email later)
+      </p>
+    </div>
 
     <footer>
-      © <span id="year"></span> Tomar Naam — Built by me.
+      © 2025 AloK The Virus — Community Moderator Portfolio
     </footer>
+
   </div>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <!-- ✅ JS Animation File -->
+  <script src="./script.js"></script>
+
 </body>
-</html># My-Portfolio-
+</html>
