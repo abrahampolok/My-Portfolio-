@@ -124,7 +124,7 @@
     <div class="card">
       <p>
         GitHub: abrahampolok <br>
-        (You can add Telegram, Twitter, Email later)
+        (Twitter: Www.x.com/Alokharisen)
       </p>
     </div>
 
