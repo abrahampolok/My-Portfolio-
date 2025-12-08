@@ -42,7 +42,7 @@
 
     <section class="hero">
       <div class="card intro">
-        <h1>Hi, I’m Tomar Naam — I build clean UI & create content.</h1>
+        <h1>Hi,  Alok The Virus I am a Community Moderator.</h1>
         <p>Short sentence about what you do (e.g., "UI designer & frontend dev. I make interfaces that are fast and easy to use.").</p>
         <div class="contact">
           <a href="mailto:youremail@example.com">Email me</a>
