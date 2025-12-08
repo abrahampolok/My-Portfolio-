@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,6 +11,7 @@
       background: #020617;
       color: white;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
 
     canvas {
@@ -19,15 +20,38 @@
       z-index: -1;
     }
 
+    /* ✅ Glow Text App */
+    #app {
+      overflow: hidden;
+      touch-action: pan-up;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      text-shadow: 
+        0 0 5px #ffffff, 
+        0 0 20px #000000, 
+        0 0 30px #000000;
+    }
+
+    #app h1 {
+      --fontSize: 60px;
+      --lineHeight: 80px;
+      width: auto;
+      height: calc(2 * var(--lineHeight));
+      line-height: var(--lineHeight);
+      margin: calc(40vh - var(--lineHeight)) auto 0;
+      font-size: var(--fontSize);
+      text-transform: uppercase;
+      transition: transform 0.1s linear;
+      pointer-events: none;
+      color: #22d3ee;
+    }
+
     .content {
       padding: 40px;
       max-width: 900px;
       margin: auto;
-    }
-
-    h1 {
-      color: #22d3ee;
-      font-size: 32px;
+      text-align: center;
     }
 
     h2 {
@@ -41,7 +65,7 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
       padding: 20px;
       border-radius: 12px;
       margin-top: 16px;
@@ -58,74 +82,66 @@
 
 <body>
 
-  <!-- ✅ Background Animation -->
-  <canvas id="canvas-club"></canvas>
+  <!-- ✅ Neon Rain Canvas -->
+  <canvas id="canvas"></canvas>
 
+  <!-- ✅ Mouse Follow Glow Name -->
+  <div id="app">
+    <h1 id="glowText">ALOK THE VIRUS</h1>
+  </div>
+
+  <!-- ✅ Portfolio Content -->
   <div class="content">
 
-    <!-- ✅ HERO -->
-    <h1>AloK The Virus</h1>
     <p>Community Moderator | Community Manager</p>
 
     <div class="card">
       <p>
         I am a dedicated community moderator with over 2 years of experience handling and managing online communities.
-        I specialize in Discord and Telegram community management, user support, and security moderation.
+        I specialize in Discord and Telegram moderation, user support, and scammer detection & banning.
       </p>
     </div>
 
-    <!-- ✅ EXPERIENCE -->
     <h2>Work Experience</h2>
 
     <div class="card">
       <h3>Teneo Protocol</h3>
       <p>
-        I have been actively working with the Teneo Protocol community for a long time, where my responsibilities include:
-        helping new users, solving their issues, guiding them with platform usage, and protecting the community by detecting
-        and banning scammers.
+        Worked as a community moderator handling Discord and Telegram,
+        helping users daily and protecting the community from scammers.
       </p>
     </div>
 
     <div class="card">
       <h3>Warden Protocol</h3>
       <p>
-        I also worked with the Warden Protocol community as a moderator, where I managed Telegram and Discord groups,
-        assisted users with onboarding, answered technical questions, and maintained a scam-free environment.
+        Managed community chats, assisted members, resolved issues,
+        and maintained a scam-free environment.
       </p>
     </div>
 
-    <!-- ✅ RESPONSIBILITIES -->
     <h2>What I Do</h2>
 
     <div class="card">
-      <ul>
-        <li>✅ Discord Community Handling</li>
-        <li>✅ Telegram Group Management</li>
-        <li>✅ Helping Users & Solving Problems</li>
-        <li>✅ Scammer Detection & Permanent Ban</li>
-        <li>✅ Community Rules Enforcement</li>
-        <li>✅ New User Onboarding Support</li>
-      </ul>
+      ✅ Discord Community Handling <br>
+      ✅ Telegram Group Management <br>
+      ✅ Helping Users & Solving Problems <br>
+      ✅ Scammer Detection & Ban <br>
+      ✅ Community Rules Enforcement
     </div>
 
-    <!-- ✅ SKILLS -->
     <h2>Skills</h2>
 
     <div class="card">
-      <p>
-        Community Management, Moderation, Conflict Handling, User Support,
-        Scammer Detection, Crypto Community Handling, Communication, Leadership
-      </p>
+      Community Management, Moderation, Communication,
+      Conflict Handling, Crypto Community Safety
     </div>
 
-    <!-- ✅ CONTACT -->
     <h2>Contact</h2>
 
     <div class="card">
-      <p>
-        GitHub: abrahampolok <br>
-        (Twitter: Www.x.com/Alokharisen)
-      </p>
+      GitHub: abrahampolok <br>
+      (You can add Telegram, Twitter, Email later)
     </div>
 
     <footer>
@@ -134,8 +150,67 @@
 
   </div>
 
-  <!-- ✅ JS Animation File -->
-  <script src="./script.js"></script>
+  <!-- ✅ Neon Rain + Mouse Follow Script -->
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    let drops = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function Drop() {
+      this.x = random(0, canvas.width);
+      this.y = random(-canvas.height, canvas.height);
+      this.len = random(10, 80);
+      this.speed = random(2, 6);
+      this.color = `hsl(${random(160, 300)}, 100%, 60%)`;
+    }
+
+    for (let i = 0; i < 150; i++) drops.push(new Drop());
+
+    function animateRain() {
+      ctx.fillStyle = "rgba(2,6,23,0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let d of drops) {
+        ctx.strokeStyle = d.color;
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.len);
+        ctx.stroke();
+
+        d.y += d.speed;
+        if (d.y > canvas.height) {
+          d.y = random(-100, 0);
+          d.x = random(0, canvas.width);
+        }
+      }
+
+      requestAnimationFrame(animateRain);
+    }
+
+    animateRain();
+
+    window.addEventListener("resize", () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+    });
+
+    // ✅ Mouse Follow Glow Text
+    const glowText = document.getElementById("glowText");
+
+    document.addEventListener("mousemove", (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 25;
+      const y = (window.innerHeight / 2 - e.clientY) / 25;
+      glowText.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
 
 </body>
 </html>
