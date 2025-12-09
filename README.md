@@ -1,216 +1,139 @@
-<Welcome To My Portfolio >
+<!Welcome html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AloK The Virus — Community Moderator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>AloK The Virus | Moderator</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background: #020617;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      overflow-x: hidden;
+    }
+
+    body {
+      background: black;
+      color: white;
+      overflow: hidden;
+      height: 100vh;
     }
 
     canvas {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
       z-index: -1;
     }
 
-    /* ✅ Glow Text App */
     #app {
-      overflow: hidden;
-      touch-action: pan-up;
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
       text-align: center;
-      text-shadow: 
-        0 0 5px #ffffff, 
-        0 0 20px #000000, 
-        0 0 30px #000000;
+      padding-top: 120px;
     }
 
-    #app h1 {
-      --fontSize: 60px;
-      --lineHeight: 80px;
-      width: auto;
-      height: calc(2 * var(--lineHeight));
-      line-height: var(--lineHeight);
-      margin: calc(40vh - var(--lineHeight)) auto 0;
-      font-size: var(--fontSize);
-      text-transform: uppercase;
-      transition: transform 0.1s linear;
-      pointer-events: none;
-      color: #22d3ee;
-    }
-
-    .content {
-      padding: 40px;
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    h2 {
-      margin-top: 40px;
-      color: #38bdf8;
+    h1 {
+      font-size: 60px;
+      text-shadow: 0 0 10px cyan;
     }
 
     p {
-      color: #cbd5f5;
-      line-height: 1.6;
+      margin-top: 15px;
+      font-size: 18px;
+      opacity: 0.9;
     }
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 16px;
+    .clock {
+      margin-top: 40px;
+      font-size: 40px;
+      letter-spacing: 5px;
+      text-shadow: 0 0 10px lime;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      color: #94a3b8;
-      font-size: 14px;
+    .mouse-light {
+      position: fixed;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(0,255,255,0.4), transparent);
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
-
 <body>
 
-  <!-- ✅ Neon Rain Canvas -->
-  <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
+<div class="mouse-light" id="mouseLight"></div>
 
-  <!-- ✅ Mouse Follow Glow Name -->
-  <div id="app">
-    <h1 id="glowText">ALOK THE VIRUS</h1>
-  </div>
+<div id="app">
+  <h1>AloK The Virus</h1>
+  <p>Community Moderator</p>
+  <p>2+ Years Experience with Teneo Protocol & Warden Protocol</p>
+  <p>Discord & Telegram Community Handling • Helping Members • Scammer Ban</p>
 
-  <!-- ✅ Portfolio Content -->
-  <div class="content">
+  <div class="clock" id="clock">00:00:00</div>
+</div>
 
-    <p>Community Moderator | Community Manager</p>
+<script>
+/* ===== CLOCK ===== */
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours().toString().padStart(2, '0');
+  let m = now.getMinutes().toString().padStart(2, '0');
+  let s = now.getSeconds().toString().padStart(2, '0');
+  document.getElementById("clock").innerText = h + ":" + m + ":" + s;
+}
+setInterval(updateClock, 1000);
+updateClock();
 
-    <div class="card">
-      <p>
-        I am a dedicated community moderator with over 2 years of experience handling and managing online communities.
-        I specialize in Discord and Telegram moderation, user support, and scammer detection & banning.
-      </p>
-    </div>
+/* ===== MOUSE LIGHT FOLLOW ===== */
+const light = document.getElementById("mouseLight");
+document.addEventListener("mousemove", e => {
+  light.style.left = e.clientX + "px";
+  light.style.top = e.clientY + "px";
+});
 
-    <h2>Work Experience</h2>
+/* ===== NEON RAIN BACKGROUND ===== */
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-    <div class="card">
-      <h3>Teneo Protocol</h3>
-      <p>
-        Worked as a community moderator handling Discord and Telegram,
-        helping users daily and protecting the community from scammers.
-      </p>
-    </div>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    <div class="card">
-      <h3>Warden Protocol</h3>
-      <p>
-        Managed community chats, assisted members, resolved issues,
-        and maintained a scam-free environment.
-      </p>
-    </div>
+let rainDrops = [];
 
-    <h2>What I Do</h2>
+for (let i = 0; i < 200; i++) {
+  rainDrops.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    speed: 2 + Math.random() * 5,
+    length: 10 + Math.random() * 20
+  });
+}
 
-    <div class="card">
-      ✅ Discord Community Handling <br>
-      ✅ Telegram Group Management <br>
-      ✅ Helping Users & Solving Problems <br>
-      ✅ Scammer Detection & Ban <br>
-      ✅ Community Rules Enforcement
-    </div>
+function drawRain() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = "cyan";
+  ctx.lineWidth = 2;
 
-    <h2>Skills</h2>
+  rainDrops.forEach(drop => {
+    ctx.beginPath();
+    ctx.moveTo(drop.x, drop.y);
+    ctx.lineTo(drop.x, drop.y + drop.length);
+    ctx.stroke();
 
-    <div class="card">
-      Community Management, Moderation, Communication,
-      Conflict Handling, Crypto Community Safety
-    </div>
+    drop.y += drop.speed;
 
-    <h2>Contact</h2>
-
-    <div class="card">
-      GitHub: abrahampolok <br>
-      (You can add Telegram, Twitter, Email later)
-    </div>
-
-    <footer>
-      © 2025 AloK The Virus — Community Moderator Portfolio
-    </footer>
-
-  </div>
-
-  <!-- ✅ Neon Rain + Mouse Follow Script -->
-  <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-
-    let drops = [];
-
-    function random(min, max) {
-      return Math.random() * (max - min) + min;
+    if (drop.y > canvas.height) {
+      drop.y = -20;
+      drop.x = Math.random() * canvas.width;
     }
+  });
 
-    function Drop() {
-      this.x = random(0, canvas.width);
-      this.y = random(-canvas.height, canvas.height);
-      this.len = random(10, 80);
-      this.speed = random(2, 6);
-      this.color = `hsl(${random(160, 300)}, 100%, 60%)`;
-    }
+  requestAnimationFrame(drawRain);
+}
 
-    for (let i = 0; i < 150; i++) drops.push(new Drop());
-
-    function animateRain() {
-      ctx.fillStyle = "rgba(2,6,23,0.15)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let d of drops) {
-        ctx.strokeStyle = d.color;
-        ctx.beginPath();
-        ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x, d.y + d.len);
-        ctx.stroke();
-
-        d.y += d.speed;
-        if (d.y > canvas.height) {
-          d.y = random(-100, 0);
-          d.x = random(0, canvas.width);
-        }
-      }
-
-      requestAnimationFrame(animateRain);
-    }
-
-    animateRain();
-
-    window.addEventListener("resize", () => {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-    });
-
-    // ✅ Mouse Follow Glow Text
-    const glowText = document.getElementById("glowText");
-
-    document.addEventListener("mousemove", (e) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 25;
-      const y = (window.innerHeight / 2 - e.clientY) / 25;
-      glowText.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  </script>
+drawRain();
+</script>
 
 </body>
 </html>
